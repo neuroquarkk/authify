@@ -6,6 +6,8 @@ export const USER_SELECT = {
     email: true,
     createdAt: true,
     updatedAt: true,
+    isVerified: true,
+    isTwoFactorEnabled: true,
 } as const;
 
 export const COOKIE_OPTIONS = {

@@ -15,7 +15,14 @@ const envSchema = z.object({
         .string()
         .toLowerCase()
         .regex(/^[0-9]+[smhdwy]$/i),
+    VERIFICATION_EXPIRY: z.coerce.number().int().positive().default(24),
+    CLIENT_URL: z.string().trim(),
     OTP_EXPIRY: z.coerce.number().int().positive().default(5),
+    EMAIL_HOST: z.string().trim().default('smtp.gmail.com'),
+    EMAIL_PORT: z.coerce.number().int().positive().default(587),
+    EMAIL_SECURE: z.boolean().default(false),
+    EMAIL_USER: z.string().trim(),
+    EMAIL_PASS: z.string().trim(),
 });
 
 const results = envSchema.safeParse(process.env);

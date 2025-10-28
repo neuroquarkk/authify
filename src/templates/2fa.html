@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Your 2FA Code</title>
+        <style>
+            body {
+                line-height: 1.6;
+            }
+
+            .container {
+                width: 90%;
+                margin: auto;
+                padding: 20px;
+            }
+
+            .header {
+                font-size: 24px;
+                font-weight: bold;
+                color: #333;
+            }
+
+            .code-box {
+                font-size: 32px;
+                font-weight: bold;
+                color: #1a73e8;
+                margin: 20px 0;
+                padding: 10px;
+                border-color: #f4f4f4;
+                border-radius: 5px;
+                letter-spacing: 2px;
+                text-align: center;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="container">
+            <div class="header">Verification Code</div>
+            <p>Hello</p>
+            <p>Here is your OTP to complete your login</p>
+        </div>
+
+        <div class="code-box">{{OTP}}</div>
+    </body>
+</html>
