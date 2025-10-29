@@ -20,7 +20,7 @@ const envSchema = z.object({
     OTP_EXPIRY: z.coerce.number().int().positive().default(5),
     EMAIL_HOST: z.string().trim().default('smtp.gmail.com'),
     EMAIL_PORT: z.coerce.number().int().positive().default(587),
-    EMAIL_SECURE: z.boolean().default(false),
+    EMAIL_SECURE: z.coerce.boolean().default(false),
     EMAIL_USER: z.string().trim(),
     EMAIL_PASS: z.string().trim(),
 });

@@ -36,7 +36,14 @@ bun run migrate
 bun run seed
 ```
 
-4. **Start the server**
+4. **(optional) Run Scripts**
+   If you want to create a ephemeral nodemailer account
+
+```bash
+bun run scripts/create-mail-account.ts
+```
+
+5. **Start the server**
 
 ```bash
 bun run start
