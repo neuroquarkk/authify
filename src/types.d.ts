@@ -7,7 +7,13 @@ declare global {
     namespace Express {
         interface Request {
             validatedQuery: any;
-            user: Omit<User, 'password'> | null;
+            user: {
+                id: string;
+            };
         }
+    }
+
+    interface BigInt {
+        toJSON(): string;
     }
 }

@@ -14,11 +14,12 @@ export const authMiddleware = asyncHandler(async (req, _res, next) => {
         where: { id: payload.userId },
         select: {
             id: true,
-            email: true,
-            createdAt: true,
-            updatedAt: true,
         },
     });
+
+    if (!user) {
+        throw new ApiError(401, 'Invalid token');
+    }
 
     req.user = user;
     next();

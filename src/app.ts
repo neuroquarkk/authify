@@ -1,4 +1,4 @@
-import { authRouter, healthRouter } from '@api';
+import { authRouter, healthRouter, userRouter } from '@api';
 import { config } from '@config';
 import { errorHandler } from '@middlewares';
 import cookieParser from 'cookie-parser';
@@ -13,6 +13,7 @@ app.use(morgan(config.MorganFormat));
 app.use(cookieParser());
 
 app.use('/api/auth', authRouter);
+app.use('/api/user', userRouter);
 app.use('/api/health', healthRouter);
 
 app.use(errorHandler);

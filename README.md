@@ -70,13 +70,22 @@ bun run start
 | POST   | /refresh          | Issue a new access/refresh token pair. Relies on `refreshToken` cookie | No            |
 | POST   | /logout           | Log out a user by invalidating the session                             | Yes           |
 
+### User (`/user`)
+
+| Method | Endpoint  | Description                                              | Auth Required |
+| ------ | --------- | -------------------------------------------------------- | ------------- |
+| GET    | /me       | Retrieve the currently authenticated user's profile data | Yes           |
+| POST   | /settings | Update user settings                                     | Yes           |
+| DELETE | /delete   | Permanently delete the authenticated user's account      | Yes           |
+| GET    | /audit    | Retrieve paginated audit logs for the user               | Yes           |
+
 ### Authentication & Authorization
 
 - The API uses JWTs (`accessToken` and `refreshToken`) stored in `httpOnly` cookies
 - The `accessToken` is used to authenticate the user for protected routes (like `/logout`) can be sent as a cookie or as a header
 
 ```
-Authorization: Bearer <yout_token>
+Authorization: Bearer <your_token>
 ```
 
 - The `refreshToken` is only used by the `/refresh` endpoint
