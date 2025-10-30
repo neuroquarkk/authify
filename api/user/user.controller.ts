@@ -1,7 +1,14 @@
 import { prisma } from '@db';
 import { ApiError, ApiResponse, asyncHandler } from '@utils';
 import { USER_SELECT } from './user.config';
-import type { DeleteAccount, PaginationQuery, Settings } from './user.schema';
+import type {
+    ForgotPassword,
+    ResetPassword,
+    DeleteAccount,
+    PaginationQuery,
+    Settings,
+} from './user.schema';
+import { UserService } from './user.service';
 
 export const getMe = asyncHandler(async (req, res) => {
     const id = req.user.id;
@@ -101,4 +108,22 @@ export const getAuditLogs = asyncHandler(async (req, res) => {
             'Audit logs fetched'
         )
     );
+});
+
+export const forgotPassword = asyncHandler<ForgotPassword>(async (req, res) => {
+    const { email } = req.body;
+    await UserService.sendReset(email);
+
+    return res
+        .status(200)
+        .json(new ApiResponse(200, null, 'Password reset email has been sent'));
+});
+
+export const resetPassword = asyncHandler<ResetPassword>(async (req, res) => {
+    const { token, password } = req.body;
+    await UserService.resetPassword(token, password);
+
+    return res
+        .status(200)
+        .json(new ApiResponse(200, null, 'Password reset successful'));
 });

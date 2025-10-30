@@ -10,17 +10,18 @@ datasource db {
 }
 
 model User {
-    id                 String             @id @default(uuid()) @db.Uuid
-    email              String             @unique
+    id                 String              @id @default(uuid()) @db.Uuid
+    email              String              @unique
     password           String
-    isVerified         Boolean            @default(false) @map("is_verified")
-    isTwoFactorEnabled Boolean            @default(false) @map("is_two_factor_enabled")
-    createdAt          DateTime           @default(now()) @map("created_at")
-    updatedAt          DateTime           @updatedAt @map("updated_at")
+    isVerified         Boolean             @default(false) @map("is_verified")
+    isTwoFactorEnabled Boolean             @default(false) @map("is_two_factor_enabled")
+    createdAt          DateTime            @default(now()) @map("created_at")
+    updatedAt          DateTime            @updatedAt @map("updated_at")
     Session            Session[]
     Audit              Audit[]
     TwoFactorToken     TwoFactorToken?
     VerificationToken  VerificationToken?
+    PasswordResetToken PasswordResetToken?
 
     @@map("users")
 }
@@ -70,4 +71,15 @@ model VerificationToken {
     user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
     @@map("verification_tokens")
+}
+
+model PasswordResetToken {
+    id        String   @id @default(uuid()) @db.Uuid
+    userId    String   @unique @map("user_id") @db.Uuid
+    token     String   @unique
+    expiresAt DateTime @map("expires_at")
+    createdAt DateTime @default(now()) @map("created_at")
+    user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+    @@map("password_reset_token")
 }

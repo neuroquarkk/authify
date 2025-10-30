@@ -18,6 +18,7 @@ const envSchema = z.object({
     VERIFICATION_EXPIRY: z.coerce.number().int().positive().default(24),
     CLIENT_URL: z.string().trim(),
     OTP_EXPIRY: z.coerce.number().int().positive().default(5),
+    TOKEN_EXPIRY: z.coerce.number().int().positive().default(1),
     EMAIL_HOST: z.string().trim().default('smtp.gmail.com'),
     EMAIL_PORT: z.coerce.number().int().positive().default(587),
     EMAIL_SECURE: z.coerce.boolean().default(false),

@@ -72,12 +72,14 @@ bun run start
 
 ### User (`/user`)
 
-| Method | Endpoint  | Description                                              | Auth Required |
-| ------ | --------- | -------------------------------------------------------- | ------------- |
-| GET    | /me       | Retrieve the currently authenticated user's profile data | Yes           |
-| POST   | /settings | Update user settings                                     | Yes           |
-| DELETE | /delete   | Permanently delete the authenticated user's account      | Yes           |
-| GET    | /audit    | Retrieve paginated audit logs for the user               | Yes           |
+| Method | Endpoint         | Description                                                   | Auth Required |
+| ------ | ---------------- | ------------------------------------------------------------- | ------------- |
+| GET    | /me              | Retrieve the currently authenticated user's profile data      | Yes           |
+| POST   | /settings        | Update user settings                                          | Yes           |
+| DELETE | /delete          | Permanently delete the authenticated user's account           | Yes           |
+| GET    | /audit           | Retrieve paginated audit logs for the user                    | Yes           |
+| POST   | /password/forgot | Request a password reset by providing the email address       | No            |
+| POST   | /password/reset  | Reset the password using a valid reset token and new password | No            |
 
 ### Authentication & Authorization
 
